@@ -3,6 +3,11 @@
 #include <ctime>
 #include <iomanip>
 
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int	Account::_totalNbWithdrawals = 0;
+
 void	Account::displayAccountsInfos( void ) {
 	Account::_displayTimestamp();
 	std::cout << "accounts:" << Account::_nbAccounts << ";";
@@ -13,6 +18,9 @@ void	Account::displayAccountsInfos( void ) {
 
 Account::Account( int initial_deposit )
 {
+	this->_accountIndex = Account::_nbAccounts;
+	Account::_nbAccounts++;
+	Account::_totalAmount += initial_deposit;
 	this->_amount = initial_deposit;
 	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
@@ -35,6 +43,8 @@ Account::~Account( void ) {
 }
 
 void	Account::makeDeposit( int deposit ) {
+	Account::_totalAmount += deposit;
+	Account::_totalNbDeposits++;
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "p_amount:" << this->_amount << ";";
@@ -53,6 +63,8 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 		std::cout << "withdrawal:refused" << std::endl;
 		return (false);
 	}
+	Account::_totalAmount -= withdrawal;
+	Account::_totalNbWithdrawals++;
 	std::cout << "withdrawal:" << withdrawal << ";";
 	this->_amount -= withdrawal;
 	this->_nbWithdrawals++;
@@ -69,7 +81,11 @@ void	Account::displayStatus( void ) const {
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "deposits:" << this->_nbDeposits << ";";
-	std::cout << "wihdrawals:" << this->_nbWithdrawals << std::endl;
+	std::cout << "withdrawals:" << this->_nbWithdrawals << std::endl;
+}
+
+void	dispInt(int i) {
+	std::cout << std::setfill('0') << std::setw(2) << i;
 }
 
 void	Account::_displayTimestamp( void ) {
@@ -82,5 +98,12 @@ void	Account::_displayTimestamp( void ) {
     int min = currentTime_tm->tm_min;
     int s = currentTime_tm->tm_sec;
 	
-    std::cout << "[" << y << m << d << "_" << h << min << s << "] ";
+    std::cout << "[" << y;
+	dispInt(m);
+	dispInt(d);
+	std::cout << "_";
+	dispInt(h);
+	dispInt(min);
+	dispInt(s);
+	std::cout << "] ";
 }
