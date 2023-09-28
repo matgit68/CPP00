@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:49:29 by mamat             #+#    #+#             */
-/*   Updated: 2023/09/04 22:44:50 by mamat            ###   ########.fr       */
+/*   Updated: 2023/09/28 17:38:03 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Contact {
 		std::string	nick;
 		std::string	phone;
 		std::string	secret;
-	
+
 	public :
 		void	add(void);
 		void	shortDisp(int i);

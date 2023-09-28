@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:55:03 by mamat             #+#    #+#             */
-/*   Updated: 2023/09/04 21:46:41 by mamat            ###   ########.fr       */
+/*   Updated: 2023/09/28 17:38:03 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 # include "Contact.hpp"
 
-class Phonebook
-{
-private:
-	Contact	contactList[8];
-public:
-	Phonebook(void);
-	~Phonebook(void);
-	void	search(void);
+class Phonebook {
+	private:
+		Contact	contactList[8];
+
+	public:
+		Phonebook(void);
+		~Phonebook(void);
+		void	search(void);
 };
 
 #endif
