@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mamat <mamat@student.42.fr>                +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/09/05 01:04:40 by mamat            ###   ########.fr        #
+#    Created: 2023/09/06 22:27:24 by mamat             #+#    #+#              #
+#    Updated: 2023/09/29 12:24:23 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 BOLD	:= \033[1m
 BLACK	:= \033[30;1m
@@ -23,9 +24,8 @@ RESET	:= \033[0m
 
 NAME := phonebook
 
-CC := c++
-CFLAGS := -Wall -Wextra -Werror -g
-SANITIZE := -fsanitize=leak
+CXX := c++
+CPPFLAGS := -std=c++98 -Wall -Wextra -Werror -g -fsanitize=address
 
 SRC :=	Contact.cpp\
 		main.cpp\
@@ -35,12 +35,8 @@ OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-.c.o:
-	@printf '$(GREEN)Compiling: $(RESET)$<\n'
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o) 
-
 $(NAME): $(OBJ)
-	@$(CC) -std=c++98 $(CFLAGS) $(OBJ) -o $(NAME) $(SANITIZE)
+	@$(CXX)  $(CPPFLAGS) -o $(NAME) $(OBJ)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 clean:

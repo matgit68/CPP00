@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mamat <mamat@student.42.fr>                +#+  +:+       +#+         #
+#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/06 22:27:24 by mamat             #+#    #+#              #
-#    Updated: 2023/09/06 22:27:51 by mamat            ###   ########.fr        #
+#    Updated: 2023/09/29 12:34:34 by mdjemaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,8 @@ RESET	:= \033[0m
 
 NAME := test
 
-CC := c++
-CFLAGS := -Wall -Wextra -Werror -g
-SANITIZE := -fsanitize=leak
+CXX := c++
+CPPFLAGS := -std=c++98 -Wall -Wextra -Werror -g -fsanitize=address
 
 SRC :=	Account.cpp\
 		tests.cpp\
@@ -35,12 +34,8 @@ OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-.c.o:
-	@printf '$(GREEN)Compiling: $(RESET)$<\n'
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o) 
-
 $(NAME): $(OBJ)
-	@$(CC) -std=c++98 $(CFLAGS) $(OBJ) -o $(NAME) $(SANITIZE)
+	@$(CXX)  $(CPPFLAGS) -o $(NAME) $(OBJ)
 	@printf '$(RED)- $(NAME) done -$(RESET)\n'
 
 clean:
